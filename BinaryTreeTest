@@ -1,0 +1,11 @@
+public class BinaryTreeTest {
+
+    public static void main(String[] args) {
+        BinaryTree<String> bt = new BinaryTree<String>();
+        bt.insert("c");
+        bt.insert("b");
+        bt.insert("a");
+        bt.insert("d");
+        bt.inorder();
+    }
+}
