@@ -1,0 +1,65 @@
+public class BinaryTree<T extends Comparable<T>> {
+private BinaryNode<T> root;
+public BinaryTree(T value) {
+root = new BinaryNode<T>(value);
+}
+public BinaryTree() {
+}
+public boolean contains(T value) {
+if (root == null) return false;
+return root.contains(value);
+}
+public void insert(T value) {
+if (root == null) {
+root = new BinaryNode<T>(value);
+} else {
+root.insert(value);
+}
+}
+public void inorder() {
+if (root == null) return;
+root.inorder();
+}
+private static class BinaryNode<ET extends Comparable<ET>> {
+private BinaryNode<ET> leftSon, rightSon;
+private ET value;
+public BinaryNode(ET value) {
+this.value = value;
+}
+private boolean contains(ET v) {
+if (v.equals(value)) return true;
+if (v.compareTo(value) < 0) {
+if (leftSon == null) return false;
+return leftSon.contains(v);
+} else {
+if (rightSon == null) return false;
+return rightSon.contains(v);
+}
+}
+public void insert(ET v) {
+if (v.equals(value)) return; // Knoten schon im Baum
+if (v.compareTo(value) < 0) {
+if (leftSon == null) {
+leftSon = new BinaryNode<ET>(v);
+} else {
+leftSon.insert(v);
+}
+} else {
+if (rightSon == null) {
+rightSon = new BinaryNode<ET>(v);
+} else {
+rightSon.insert(v);
+}
+}
+}
+public void inorder() {
+if (leftSon != null) {
+leftSon.inorder();
+}
+System.out.println(value);
+if (rightSon != null) {
+rightSon.inorder();
+}
+}
+}
+}
